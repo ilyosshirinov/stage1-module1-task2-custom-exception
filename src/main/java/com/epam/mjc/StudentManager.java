@@ -13,12 +13,20 @@ public class StudentManager extends IllegalArgumentException {
         StudentManager manager = new StudentManager();
 
         for (int i = 0; i < IDs.length; i++) {
-
             try {
-                Student student = manager.find(IDs[i]);
-                System.out.println("Student name " + student.getName());
+                Student student = manager.find(1);
+                if (IDs[i] <= 10) {
+                    student = manager.find(IDs[i]);
+                } else student = null;
+
+                if (student != null) {
+                    System.out.println("Student name " + student.getName());
+                } else {
+                    System.out.println("Could not find student with ID " + IDs[i]);
+                }
+
             } catch (IllegalArgumentException e) {
-                System.out.println("Could not find student with ID " + IDs[i]);
+                e.printStackTrace();
             }
         }
     }
